@@ -21,18 +21,21 @@ public class LoginService {
     LoginRepository loginRepository;
 
     public String login(Object obj){
+        System.out.println(obj.toString());
        Map<String ,LinkedHashMap<String,HashMap<String,Object>>> param = (Map<String, LinkedHashMap<String,HashMap<String,Object>>>) obj;
        LinkedHashMap<String,HashMap<String, Object>> info = param.get("authObj");
         System.out.println(info);
+        String id = String.valueOf(info.get("id"));
         HashMap<String,Object> kakaoAccount = info.get("kakao_account");
         String nickName = ((HashMap<String, String>) kakaoAccount.get("profile")).get("nickname");
         String email = String.valueOf(kakaoAccount.get("email"));
         try {
-            if (loginRepository.existsByEmail(email)) {
+            if (loginRepository.existsById(id)) {
                 session.setAttribute("SESSION_NAME",nickName);
+                loginRepository.save(Login.builder().id(id).name(nickName).email(email).build());
                 return nickName;
             } else {
-                loginRepository.save(new Login(email, nickName));
+                loginRepository.save(Login.builder().id(id).name(nickName).email(email).build());
                 return "success";
             }
         }catch (Exception e){

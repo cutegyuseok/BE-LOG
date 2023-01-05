@@ -17,8 +17,13 @@ import javax.persistence.Table;
 public class Login {
     @Id
     @Column(nullable = false)
-    private String email;
+    private String id;
 
     @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
+    private String email;
+
+
 }
