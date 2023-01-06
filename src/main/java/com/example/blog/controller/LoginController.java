@@ -23,4 +23,9 @@ public class LoginController {
     public String logout(){
         return loginService.logout();
     }
+
+    @PostMapping("signOut")
+    public String signOut(){
+        return loginService.signOut();
+    }
 }

@@ -31,10 +31,11 @@ public class LoginService {
         String email = String.valueOf(kakaoAccount.get("email"));
         try {
             if (loginRepository.existsById(id)) {
-                session.setAttribute("SESSION_NAME",nickName);
+                session.setAttribute("SESSION_NAME",id);
                 loginRepository.save(Login.builder().id(id).name(nickName).email(email).build());
                 return nickName;
             } else {
+                session.setAttribute("SESSION_NAME",id);
                 loginRepository.save(Login.builder().id(id).name(nickName).email(email).build());
                 return "success";
             }
@@ -47,5 +48,18 @@ public class LoginService {
     public String logout(){
         session.setAttribute("SESSION_NAME",null);
         return "success";
+    }
+
+    public String signOut(){
+        String id=String.valueOf(session.getAttribute("SESSION_NAME"));
+        try {
+            loginRepository.deleteById(id);
+            session.setAttribute("SESSION_NAME",null);
+            return "success";
+        }catch (Exception e){
+            e.printStackTrace();
+            return "failed";
+        }
+
     }
 }
