@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 @Aspect
 public class NonLoginAop {
 
-    @Pointcut("execution(* com.example.blog.controller.PageController.*(..))" +
+    @Pointcut("execution(* com.example.blog.main.controller.PageController.*(..))" +
             "&& @annotation(com.example.blog.aop.NonLogin)")
     public void cut(){};
 
@@ -22,7 +22,7 @@ public class NonLoginAop {
     @Around("cut()")
     public Object checkLogin(ProceedingJoinPoint joinPoint)throws Throwable{
         HttpSession session = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest().getSession();
-        if(session.getAttribute("SESSION_NAME")!=null){
+        if(session.getAttribute("id")!=null){
             return "index";
         }else {
             return joinPoint.proceed();
