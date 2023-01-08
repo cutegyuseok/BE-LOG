@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.blog.mapper.xenium.PocketMapper">
+
+    <select id="getUserCart" resultType="HashMap" parameterType="String">
+        SELECT A.ID AS pid,A.PRODUCTNAME productName,A.THUMB thumb,A.PRICE price,B.ID AS cid,B.AMOUNT amount,B.INDATE indate,
+               ( SELECT CATENAME FROM CATEGORY WHERE ID=(SELECT CATEID FROM CATEMAP WHERE ETCTABLE='PRODUCT' AND ETCID=A.ID)) catename
+        FROM PRODUCT A
+           ,CART B
+        WHERE
+            A.ID=B.PRODUCTID AND
+            B.USERID=#{userid}
+    </select>
+
+    <select id="getProductOrderedAmount" parameterType="String" resultType="Integer">
+        select sum(amount) from orderdetail where productid =${pId}
+    </select>
+
+    <update id="updateCart" parameterType="com.example.xenium.pocket.dto.Cart">
+        update cart set amount=${amount} where userid=#{userId} and productid=${productId}
+    </update>
+
+    <insert id="insertCart" parameterType="com.example.xenium.pocket.dto.Cart">
+        insert into cart(userid,productid,amount) values (#{userId},${productId},${amount})
+    </insert>
+
+    <delete id="deleteCart" parameterType="com.example.xenium.pocket.dto.Cart">
+        delete from cart where userid=#{userId} and productid=${productId}
+    </delete>
+
+</mapper>

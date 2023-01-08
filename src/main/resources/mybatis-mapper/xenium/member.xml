@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.blog.mapper.xenium.MemberMapper">
+
+    <insert id="signup" parameterType="com.example.xenium.member.dto.SignUpDTO">
+        INSERT INTO customer
+        (
+            id,
+            pw,
+            name,
+            phone,
+            address,
+            email,
+            gender,
+            sns,
+            birth,
+            addressdetail,
+            postcode
+        )
+            value
+            (
+            #{id},
+            #{pw},
+            #{name},
+            #{phone},
+            #{address},
+            #{email},
+            #{gender},
+            #{sns},
+            #{birth},
+            #{addressDetail},
+            #{postcode}
+            );
+    </insert>
+
+    <select id="login" parameterType="com.example.xenium.member.dto.LoginDTO" resultType="com.example.xenium.member.dto.SignUpDTO">
+        SELECT *
+        FROM   customer
+        WHERE  id = #{id}
+             AND pw = #{pw}
+    </select>
+
+    <insert id="insertOrderBook" parameterType="com.example.xenium.member.dto.Order">
+        INSERT INTO ORDERBOOK
+        (USERID,NAME,PHONE,POSTCODE,ADDRESS,ADDRESSDETAIL)
+        VALUES
+        (#{id},#{name},#{phone},#{postcode},#{address},#{addressDetail})
+        <selectKey resultType="int" keyProperty="preid" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <insert id="insertOrderDetail" parameterType="HashMap">
+        INSERT INTO ORDERDETAIL
+            (ORDERID,USERID,PRODUCTID,AMOUNT,PRICE)
+        VALUES
+            (#{id},#{userid},#{pid},#{amount},#{price})
+    </insert>
+
+    <delete id="deleteCart" parameterType="String">
+        delete from cart where userid=#{id}
+    </delete>
+</mapper>
