@@ -172,10 +172,10 @@ function locationChange(){
     <div class="xans-element- xans-layout xans-layout-searchheader search-bar ">
       <fieldset id="search_fieldset">
         <div style="float:left">
-          <input id="searchWord" name="searchWord" fw-filter="" fw-label="검색어" fw-msg="" class="inputTypeText" placeholder="" onmousedown="SEARCH_BANNER.clickSearchForm(this)" value="" type="text">
+          <input id="searchWord" name="searchWord" fw-filter="" fw-label="검색어" fw-msg="" class="inputTypeText" placeholder=""  value="" type="text">
         </div>
         <div style="float:right; cursor:pointer">
-          <a onclick="SEARCH_BANNER.submitSearchBanner(this); return false;">
+          <a onclick="productLocationChange(searchWord.value); return false;">
             SEARCH
           </a>
         </div>
