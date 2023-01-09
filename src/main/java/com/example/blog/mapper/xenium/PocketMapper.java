@@ -1,6 +1,6 @@
 package com.example.blog.mapper.xenium;
 
-import com.example.xenium.pocket.dto.Cart;
+import com.example.blog.xenium.pocket.dto.Cart;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.HashMap;

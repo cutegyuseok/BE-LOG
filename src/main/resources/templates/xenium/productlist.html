@@ -327,7 +327,7 @@
 
         function insertCart(ind,num){
             $.ajax({
-                url: "/addCart",
+                url: "/xenium/addCart",
                 dataType: "json",
                 contentType: "application/json",
                 data: JSON.stringify({pocket}),
@@ -360,7 +360,7 @@
                 }
                 openPocket();
                 $.ajax({
-                    url: "/deleteCart",
+                    url: "/xenium/deleteCart",
                     data: {id},
                     type:"POST",
                 }).done(function (fragment) {
@@ -415,7 +415,7 @@
 
             //여기서부터 시작. 해야할것은 구매 기능 구현
             $.ajax({
-                url: "/confirmBuying",
+                url: "/xenium/confirmBuying",
                 dataType: "json",
                 contentType: "application/json",
                 data: JSON.stringify({pocket}),
@@ -429,7 +429,7 @@
                         alert("현재 구매불가 상품이 있습니다.\n 새로고침 후 장바구니를 체크해주세요.");
                     }else if(data.responseText=='success'){
                         $.ajax({
-                            url: "/confirmRest",
+                            url: "/xenium/confirmRest",
                             dataType: "json",
                             contentType: "application/json",
                             data: JSON.stringify({
@@ -468,7 +468,8 @@
                                             msg += '결제 금액 : ' + rsp.paid_amount;
                                             msg += '카드 승인번호 : ' + rsp.apply_num;
 
-                                            alert("구매 완료 하였습니다.");
+                                            alert("구매 완료 하였습니다." +
+                                                "테스트 편의를 위해 개인정보가 미입력 상태임에도 테스트구매가 가능합니다.");
                                             window.location.reload();
 
                                         } else {
@@ -543,14 +544,14 @@
 
         function checkLogin(){
             $.ajax({
-                url: "/checkLogin",
+                url: "/xenium/checkLogin",
                 dataType: "json",
                 contentType: "application/json",
                 type:"POST",
                 complete  : function(data) {
                     if(data.responseText=='need'){
                         alert("로그인하신 후 이용해주세요.");
-                        location.href = "/loginPage";
+                        location.href = "/login";
                         return;
                     }
                 }
@@ -612,7 +613,7 @@
 
         function selectAvailAmount(id,ind,gubun) {
             $.ajax({
-                url: "/selectAvailAmountCart",
+                url: "/xenium/selectAvailAmountCart",
                 data: {id:id},
                 type:"POST",
             }).done(function (fragment) {

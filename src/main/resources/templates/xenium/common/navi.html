@@ -13,10 +13,10 @@
 ================================================== -->
 <script>
 function productLocationChange(param){
-	location.href = "/productList?searchWord="+ encodeURI(param);
+	location.href = "/xenium/productList?searchWord="+ encodeURI(param);
 }
 function contentsLocationChange(param){
-	location.href = "/contentsList?searchWord="+ encodeURI(param);
+	location.href = "/xenium/contentsList?searchWord="+ encodeURI(param);
 }
 </script>
 <div class="nav-container" id="menuUp"  style="background-color: #fcf1e3;">
@@ -27,7 +27,7 @@ function contentsLocationChange(param){
             <div class="row">
 
               <div class="brand">
-                <a style="text-transform: unset; font-family: 'Major Mono Display', monospace;" href="/">
+                <a style="text-transform: unset; font-family: 'Major Mono Display', monospace;" href="/xenium/index">
      <img src="/xenium/images/logoxe.png">
                 </a>
               </div>
@@ -43,15 +43,14 @@ function contentsLocationChange(param){
                     <i class="icon ion-close-round close-iframe"></i>
                     <div class="intro-inner">
                       <ul id="nav-menu">
-                        <li><a href="/">HOME</a></li>
+                        <li><a href="/xenium/index">HOME</a></li>
                         <li><a onclick="productLocationChange('')">SHOP</a></li>
                         <li><a href="#">COMMUNITY</a></li>
                           <th:block th:if="${session.id == null}">
-                       	<li><a href="/loginPage" class="opc-main-bg">LOGIN</a></li>
-                        <li><a href="/signupPage" class="opc-main-bg">SIGNUP</a></li>
+                       	<li><a href="/login" class="opc-main-bg">LOGIN</a></li>
                           </th:block>
                           <th:block th:if="${session.id != null}">
-                        <li><a href="/logout">LOGOUT</a></li>
+                        <li><a href="/xenium/logout">LOGOUT</a></li>
                           </th:block>
                       </ul>
                     </div>

@@ -1,10 +1,10 @@
 package com.example.blog.xenium.member.dto;
 
-public class LoginDTO {
+public class XenLoginDTO {
     private String id;
     private String pw;
 
-    public LoginDTO(String id, String pw) {
+    public XenLoginDTO(String id, String pw) {
         this.id = id;
         this.pw = pw;
     }

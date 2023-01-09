@@ -1,6 +1,6 @@
 package com.example.blog.xenium.product.dto;
 
-import com.example.xenium.util.dto.Pagination;
+import com.example.blog.xenium.util.dto.Pagination;
 
 import java.util.ArrayList;
 import java.util.List;

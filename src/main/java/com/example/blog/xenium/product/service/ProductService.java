@@ -1,12 +1,14 @@
 package com.example.blog.xenium.product.service;
 
-import com.example.xenium.pocket.repository.PocketRepository;
-import com.example.xenium.product.dto.Category;
-import com.example.xenium.product.dto.Product;
-import com.example.xenium.product.dto.ProductList;
-import com.example.xenium.product.repository.ProductRepository;
-import com.example.xenium.util.dto.Pagination;
-import com.example.xenium.util.dto.SearchDto;
+import com.example.blog.xenium.pocket.repository.PocketRepository;
+import com.example.blog.xenium.product.repository.ProductRepository;
+import com.example.blog.xenium.pocket.repository.PocketRepository;
+import com.example.blog.xenium.product.dto.Category;
+import com.example.blog.xenium.product.dto.Product;
+import com.example.blog.xenium.product.dto.ProductList;
+import com.example.blog.xenium.product.repository.ProductRepository;
+import com.example.blog.xenium.util.dto.Pagination;
+import com.example.blog.xenium.util.dto.SearchDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

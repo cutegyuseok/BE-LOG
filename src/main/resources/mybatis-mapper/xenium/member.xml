@@ -3,7 +3,7 @@
 
 <mapper namespace="com.example.blog.mapper.xenium.MemberMapper">
 
-    <insert id="signup" parameterType="com.example.xenium.member.dto.SignUpDTO">
+    <insert id="signup" parameterType="com.example.blog.xenium.member.dto.SignUpDTO">
         INSERT INTO customer
         (
             id,
@@ -34,14 +34,14 @@
             );
     </insert>
 
-    <select id="login" parameterType="com.example.xenium.member.dto.LoginDTO" resultType="com.example.xenium.member.dto.SignUpDTO">
+    <select id="login" parameterType="com.example.blog.xenium.member.dto.XenLoginDTO" resultType="com.example.blog.xenium.member.dto.SignUpDTO">
         SELECT *
         FROM   customer
         WHERE  id = #{id}
              AND pw = #{pw}
     </select>
 
-    <insert id="insertOrderBook" parameterType="com.example.xenium.member.dto.Order">
+    <insert id="insertOrderBook" parameterType="com.example.blog.xenium.member.dto.Order">
         INSERT INTO ORDERBOOK
         (USERID,NAME,PHONE,POSTCODE,ADDRESS,ADDRESSDETAIL)
         VALUES
@@ -61,4 +61,38 @@
     <delete id="deleteCart" parameterType="String">
         delete from cart where userid=#{id}
     </delete>
+
+    <insert id="autoSignup" parameterType="String">
+        INSERT INTO customer
+            (
+             id
+            )values
+            (
+             #{id}
+            )
+    </insert>
+    
+    <select id="checkExist" parameterType="String">
+        select COUNT(id) from customer where id=#{id}
+    </select>
+    
+    <update id="changeInfo" parameterType="com.example.blog.xenium.member.dto.UpdateDTO">
+        update customer set
+                            name = #{name},
+                            phone=#{phone},
+                            address=#{address},
+                            email=#{email},
+                            gender=#{gender},
+                            sns=#{sns},
+                            birth=#{birth},
+                            addressdetail=#{addressDetail},
+                            postcode=#{postcode}
+                        where id = #{id}
+    </update>
+
+    <select id="getUserInfo" parameterType="String" resultType="com.example.blog.xenium.member.dto.SignUpDTO">
+        select *
+        from customer
+        where id = #{id}
+    </select>
 </mapper>
