@@ -1,9 +1,12 @@
 package com.example.blog.xenium.member.service;
 
-import com.example.xenium.member.dto.LoginDTO;
-import com.example.xenium.member.dto.Order;
-import com.example.xenium.member.dto.SignUpDTO;
-import com.example.xenium.member.repository.MemberRepository;
+import com.example.blog.xenium.member.dto.UpdateDTO;
+import com.example.blog.xenium.member.dto.XenLoginDTO;
+import com.example.blog.xenium.member.dto.Order;
+import com.example.blog.xenium.member.dto.SignUpDTO;
+import com.example.blog.xenium.member.repository.MemberRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +22,8 @@ public class MemberService {
     @Autowired
     MemberRepository memberRepository;
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     public int signup(SignUpDTO dto) {
         try {
             return memberRepository.signup(dto);
@@ -28,7 +33,7 @@ public class MemberService {
         return 0;
     }
 
-    public SignUpDTO login(LoginDTO dto) {
+    public SignUpDTO login(XenLoginDTO dto) {
         try {
             return memberRepository.login(dto);
         }catch (Exception e){
@@ -59,4 +64,49 @@ public class MemberService {
         }
         return success;
     }
+
+    public boolean autoSignup(String id){
+        try {
+            System.out.println("auto Signup");
+            if (memberRepository.autoSignup(id) > 0) {
+                return true;
+            } else {
+               return false;
+            }
+        }catch (Exception e){
+            logger.info(e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean checkExist(String id){
+        try {
+            System.out.println(memberRepository.checkExist("check id"+id));
+            if(memberRepository.checkExist(id)>0){
+                return true;
+            }else return false;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public int changeInfo(UpdateDTO updateDTO){
+        try {
+            return memberRepository.changeInfo(updateDTO);
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public SignUpDTO getUserInfo(String id){
+        try {
+            SignUpDTO signUpDTO = memberRepository.getUserInfo(id);
+            return signUpDTO;
+        }catch (Exception e){
+            e.printStackTrace();
+            return new SignUpDTO(id);
+        }
+    }
+
 }

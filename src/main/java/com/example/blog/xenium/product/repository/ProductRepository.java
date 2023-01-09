@@ -1,9 +1,9 @@
 package com.example.blog.xenium.product.repository;
 
-import com.example.xenium.mapper.ProductMapper;
-import com.example.xenium.product.dto.Category;
-import com.example.xenium.product.dto.Product;
-import com.example.xenium.util.dto.SearchDto;
+import com.example.blog.mapper.xenium.ProductMapper;
+import com.example.blog.xenium.product.dto.Category;
+import com.example.blog.xenium.product.dto.Product;
+import com.example.blog.xenium.util.dto.SearchDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

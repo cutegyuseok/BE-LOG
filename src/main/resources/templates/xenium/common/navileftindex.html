@@ -39,18 +39,18 @@
 ================================================== -->
 <script>
 function productLocationChange(param){
-	location.href = "/productList?searchWord="+ encodeURI(param);
+	location.href = "/xenium/productList?searchWord="+ encodeURI(param);
 }
 function contentsLocationChange(param){
-	location.href = "/contentsList?searchWord="+ encodeURI(param);
+	location.href = "/xenium/contentsList?searchWord="+ encodeURI(param);
 }
 function locationChange(){
-	location.href = "/cartList";
+	location.href = "/xenium/cartList";
 }
 </script>
 <div id="left" class="XXsnipcss_extracted_selector_selectionXX" style="color:white;">
   <div id="logo">
-    <a href="/">
+    <a href="/xenium/index">
      <!-- <h1 style="text-transform: unset; font-family: 'Major Mono Display', monospace; color:white;"> XeniuM </h1> -->
      <img src="/xenium/images/logoxe.png">
     </a>
@@ -74,7 +74,7 @@ function locationChange(){
       </li>
       </th:block>
        <li>
-        <a class="slideMenu" id="slide1" href="/aboutus">
+        <a class="slideMenu" id="slide1" href="/xenium/aboutus">
           ABOUT US
         </a>
 
@@ -84,14 +84,7 @@ function locationChange(){
           SHOP
         </a>
         <ul id="submenu2" class="submenu">
-          <tr th:each="category:${session.categories}">
-            <li>
-              <a th:text="${category.getCateName()}"
-                 th:cateName="${category.getCateName()}"
-                 th:onclick="productLocationChange(this.getAttribute('cateName'))">
-              </a>
-            </li>
-          </tr>
+
         </ul>
       </li>
       <li>
@@ -138,22 +131,19 @@ function locationChange(){
 
         <th:block th:if="${session.id == null}">
         <span id="toggle" style="cursor:pointer">
-          	 <a href="/loginPage" style="color:white;">
+          	 <a href="/login" style="color:white;">
           LOGIN
         </a>
         </span>
-    		<a href="/signupPage" style="color:white;">
-          JOIN US
-        </a>
         </th:block>
 
         <th:block th:if="${session.id != null}">
         <span id="toggle" style="cursor:pointer">
-          	 <a href="/logout" style="color:white;">
+          	 <a href="/xenium/logout" style="color:white;">
           LOGOUT
         </a>
         </span>
-    		<a href="/changeInfo" style="color:white;">
+    		<a href="/xenium/changeInfo" style="color:white;">
           MYPAGE
         </a>
         </th:block>

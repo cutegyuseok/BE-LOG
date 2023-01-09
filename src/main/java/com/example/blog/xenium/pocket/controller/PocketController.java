@@ -1,17 +1,16 @@
 package com.example.blog.xenium.pocket.controller;
 
-import com.example.xenium.member.dto.SignUpDTO;
-import com.example.xenium.pocket.service.PocketService;
+import com.example.blog.xenium.member.dto.SignUpDTO;
+import com.example.blog.xenium.pocket.service.PocketService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
+
 
 @RestController
+@RequestMapping("/xenium/*")
 public class PocketController {
 
     @Autowired
@@ -20,8 +19,8 @@ public class PocketController {
     @RequestMapping("/addCart")
     public @ResponseBody String addCart(@RequestBody(required = false) Object pocket, HttpSession session) {
         if (session.getAttribute("id")==null)return "loginFail";
-        SignUpDTO user=(SignUpDTO) session.getAttribute("id");
-        pocketService.updateCartInDB(pocket,user.getId());
+        String id = String.valueOf(session.getAttribute("id"));
+        pocketService.updateCartInDB(pocket,id);
         return "success";
     }
     @PostMapping("/selectAvailAmountCart")//상품id로 최대 구매 가능수량 확인
@@ -32,8 +31,8 @@ public class PocketController {
 
     @PostMapping("/deleteCart")
     public String deleteCart(String id,@ApiIgnore HttpSession session){
-        SignUpDTO user=(SignUpDTO) session.getAttribute("id");
-        if(pocketService.deleteCart(id,user.getId())){
+        String uid = String.valueOf(session.getAttribute("id"));
+        if(pocketService.deleteCart(id,uid)){
             return "success";
         }
         return "failed";

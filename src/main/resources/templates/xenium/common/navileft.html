@@ -39,18 +39,18 @@
 ================================================== -->
 <script>
 function productLocationChange(param){
-      location.href = "/productList?searchWord="+ encodeURI(param);
+      location.href = "/xenium/productList?searchWord="+ encodeURI(param);
 }
 function contentsLocationChange(param){
-	location.href = "/contentsList?searchWord="+ encodeURI(param);
+	location.href = "/xenium/contentsList?searchWord="+ encodeURI(param);
 }
 function locationChange(){
-	location.href = "/cartList";
+	location.href = "/xenium/cartList";
 }
 </script>
 <div id="left" class="XXsnipcss_extracted_selector_selectionXX" style="background-color: #fcf1e3;">
   <div id="logo">
-    <a href="/">
+    <a href="/xenium/index">
     
      <img src="/xenium/images/logoxe.png">
     <!-- 
@@ -74,7 +74,7 @@ function locationChange(){
       </li>
       </th:block>
       <li>
-        <a class="slideMenu" id="slide1"  href="/aboutus">
+        <a class="slideMenu" id="slide1"  href="/xenium/aboutus">
           ABOUT US
         </a>
        <!--  <ul id="submenu1" class="submenu">
@@ -149,21 +149,18 @@ function locationChange(){
 
           <th:block th:if="${session.id == null}">
         <span id="toggle" style="cursor:pointer">
-          	 <a href="/loginPage">
+          	 <a href="/login">
           LOGIN
         </a>
         </span>
-    		<a href="/signupPage">
-          JOIN US
-            </a></th:block>
-
+          </th:block>
           <th:block th:if="${session.id != null}">
         <span id="toggle" style="cursor:pointer">
-          	 <a href="/logout">
+          	 <a href="/xenium/logout">
           LOGOUT
         </a>
         </span>
-    		<a href="/changeInfo">
+    		<a href="/xenium/changeInfo">
           MYPAGE
             </a>></th:block>
       </li>

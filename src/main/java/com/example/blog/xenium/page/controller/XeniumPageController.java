@@ -1,23 +1,26 @@
 package com.example.blog.xenium.page.controller;
 
-import com.example.xenium.aop.NonLogin;
-import com.example.xenium.member.dto.SignUpDTO;
-import com.example.xenium.pocket.service.PocketService;
-import com.example.xenium.product.dto.ProductList;
-import com.example.xenium.product.service.ProductService;
-import com.example.xenium.util.dto.SearchDto;
+import com.example.blog.aop.NonLogin;
+import com.example.blog.xenium.member.dto.SignUpDTO;
+import com.example.blog.xenium.member.service.MemberService;
+import com.example.blog.xenium.pocket.service.PocketService;
+import com.example.blog.xenium.product.dto.ProductList;
+import com.example.blog.xenium.product.service.ProductService;
+import com.example.blog.xenium.util.dto.SearchDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 
 @Controller
 @Api(tags = {"페이지 서비스"},description = "페이지 관련 서비스")
+@RequestMapping("/xenium/*")
 public class XeniumPageController {
 
 
@@ -27,36 +30,46 @@ public class XeniumPageController {
     @Autowired
     PocketService pks;
 
+    @Autowired
+    MemberService memberService;
+
     @ApiOperation(value = "메인페이지", notes = "메인페이지(index) 이동")
-    @GetMapping("/")
+    @GetMapping(value = {"/index",""})
     public String mainPage(HttpSession session) {
         session.setAttribute("categories",ps.getCategories());
-        return "index";
+        if (session.getAttribute("id")!=null){
+            String id = String.valueOf(session.getAttribute("id"));
+            System.out.println(id);
+            if(!memberService.checkExist(id)){
+                memberService.autoSignup(id);
+            }
+        }
+        return "xenium/index";
     }
 
     @ApiOperation(value = "회원가입 페이지", notes = "회원가입 페이지 이동")
     @GetMapping("/signupPage")
     @NonLogin
     public String signupPage() {
-        return "user/signup";
+        return "xenium/user/signup";
     }
 
     @ApiOperation(value = "사용자 로그인 페이지", notes = "사용자 로그인 페이지 이동")
     @GetMapping("/loginPage")
     @NonLogin
     public String loginPage() {
-        return "user/login";
+        return "login";
     }
 
     @ApiOperation(value = "가게정보 페이지", notes = "가게 정보 페이지 이동")
     @GetMapping("/aboutus")
     public String aboutus() {
-        return "aboutus";
+        return "xenium/aboutus";
     }
 
     @ApiOperation(value = "상품 목록 페이지", notes = "상품 목록 페이지 이동")
     @GetMapping("/productList")
-    public String productList(@RequestParam String searchWord, SearchDto params, Model model,HttpSession session) {
+    public String productList(@RequestParam String searchWord, SearchDto params, Model model, HttpSession session) {
         params.setKeyword(searchWord);
         ProductList product = ps.findAll(params);
         model.addAttribute("product", product);
@@ -65,16 +78,26 @@ public class XeniumPageController {
             model.addAttribute("keyword", params.getKeyword());
         }
         if(session.getAttribute("id")!=null){
-            SignUpDTO user=(SignUpDTO) session.getAttribute("id");
-            model.addAttribute("paramText",pks.getUserCart(user.getId()));
+            String id = String.valueOf(session.getAttribute("id"));
+            model.addAttribute("paramText",pks.getUserCart(id));
         }
-        return "productlist";
+        return "xenium/productlist";
     }
 
     @GetMapping("/logout")
     public String logout(HttpSession session){
         System.out.println("GET방식으로 로그아웃");
         session.setAttribute("id",null);
-        return "index";
+        return "xenium/index";
+    }
+
+    @GetMapping("/changeInfo")
+    public String changeInfo(){
+        return "xenium/user/changeInfo";
+    }
+
+    @GetMapping("/orderList")
+    public String orderList(){
+        return "xenium/user/orderList";
     }
 }

@@ -45,9 +45,6 @@ http://www.tooplate.com/view/2082-pure-mix
   <script>
   function testForm(){
 
-	  let id=$("#id").val();
-	  let pw=$("#pw").val();
-	  let pwcon=$("#pwcon").val();
 	  let name=$("#name").val();
 	  let phone=$("#phone").val();
 	  let address=$("#address").val();
@@ -61,21 +58,6 @@ http://www.tooplate.com/view/2082-pure-mix
 	  
 	  if (!$('input.checkbox_check').is(':checked')) {
 		  $("#warning").text("이용약관에 동의는 필수입니다.");
-		  return false;
-	  }
-	  
-	  if(id.length<6 || id.length > 16){
-		  $("#warning").text("ID 값은 7자 이상 15자 이하로 해주세요.");
-		  return false;
-	  }
-	  
-	  if(pw.length<6 || pw.length > 16){
-		  $("#warning").text("비밀번호 값은 7자 이상 15자 이하로 해주세요.");
-		  return false;
-	  }
-	  
-	  if(pw!=pwcon){
-		  $("#warning").text("비밀번호와 확인값이 일치하지 않습니다.");
 		  return false;
 	  }
 
@@ -120,10 +102,9 @@ http://www.tooplate.com/view/2082-pure-mix
 
 	  $.ajax({
 		  type : "POST",
-		  url : "/xenium/signup", //요청 할 URL
+		  url : "/xenium/changeInfo", //요청 할 URL
 		  data : {
-			  'id':id,
-			  'pw':pw,
+			  'id':"temp",
 			  'name':name,
 			  'phone':phone,
 			  'address':address,
@@ -138,11 +119,11 @@ http://www.tooplate.com/view/2082-pure-mix
 			  if(data != null)    {
 				  if(data == "1"){
 
-					  alert('회원가입에 성공하였습니다.');
+					  alert('정보를 수정하였습니다.');
 					  location.href="/xenium/index";
 				  }else{
 
-					  $("#warning").text("겹치는 아이디가 있습니다.");
+					  $("#warning").text("정보수정에 실패하였습니다.");
 
 				  }
 			  }
@@ -257,19 +238,11 @@ http://www.tooplate.com/view/2082-pure-mix
    			<div class="container">
                <div class="row">
                  <div class="wow fadeInUp col-md-6 col-sm-6" data-wow-delay="1.6s">
-                 			<div style="font-size: 20px;padding-bottom: 40px;display:inline-flex;">
-							<!-- <a href="/loginPage">LOGIN</a> / <a href="/signupPage">SIGNUP</a> -->
-							<button class="form-control submit" style="width:100px;"onclick="location.href='/xenium/loginPage'">LOGIN</button><button onclick="location.href='/xenium/signupPage'" class="form-control submit"style="width:100px;">SIGNUP</button>
-							</div>
-					<h1>JOIN US</h1>
+					<h1>정보 수정</h1>
 					<div class="contact-form">
-						<form id="contact-form" method="post" action="/xenium/signup">
+						<form id="contact-form" method="post" action="/xenium/changeInfo">
 						
 						<h3 style="padding-bottom: 20px;">REQUIRED</h3>
-						<a style="color:red;">${message}</a>
-							<input style="background:white;"name="id" id="id" type="text" class="form-control" placeholder="아이디(7~15글자)" required>
-							<input style="background:white;"name="pw" id="pw"  type="password" class="form-control" placeholder="비밀번호(7~15글자)"  required>
-							<input style="background:white;"name="pwcon" id="pwcon"  type="password" class="form-control" placeholder="비밀번호 확인"  required>
 							<input style="background:white;"name="name" id="name"  type="text" class="form-control" placeholder="이름"  required>
 							<div style="display: flex;">
 							<input type="button" class="form-control submit" onclick="searchAddress()" style="background: #111112;color:white;height: 50px;width:100px;" value="주소검색">
@@ -293,9 +266,8 @@ http://www.tooplate.com/view/2082-pure-mix
 							
 							<a id="warning" style="color:red;"></a>
 							<div class="contact-submit" style="width:100%;">
-								<input type="button" onclick="testForm()" class="form-control submit" value="회원가입하기">
+								<input type="button" onclick="testForm()" class="form-control submit" value="정보 수정하기">
 							</div>
-							<a href="/xenium/loginPage">LOGIN</a> / <a href="/xenium/signupPage">SIGNUP</a>
 						</form>
 					</div>
 					<br>

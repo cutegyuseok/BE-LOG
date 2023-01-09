@@ -1,9 +1,10 @@
 package com.example.blog.xenium.member.repository;
 
-import com.example.xenium.mapper.MemberMapper;
-import com.example.xenium.member.dto.LoginDTO;
-import com.example.xenium.member.dto.Order;
-import com.example.xenium.member.dto.SignUpDTO;
+import com.example.blog.mapper.xenium.MemberMapper;
+import com.example.blog.xenium.member.dto.UpdateDTO;
+import com.example.blog.xenium.member.dto.XenLoginDTO;
+import com.example.blog.xenium.member.dto.Order;
+import com.example.blog.xenium.member.dto.SignUpDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -19,7 +20,7 @@ public class MemberRepository {
         return memberMapper.signup(dto);
     }
 
-    public SignUpDTO login(LoginDTO dto){
+    public SignUpDTO login(XenLoginDTO dto){
         return memberMapper.login(dto);
     }
 
@@ -33,5 +34,18 @@ public class MemberRepository {
     public int deleteCart(String id){
         return memberMapper.deleteCart(id);
     }
+
+    public int autoSignup(String id){return memberMapper.autoSignup(id);}
+
+    public int checkExist(String id){
+        return memberMapper.checkExist(id);
+    }
+
+    public int changeInfo(UpdateDTO updateDTO){
+        return memberMapper.changeInfo(updateDTO);
+    }
+
+    public SignUpDTO getUserInfo(String id){return memberMapper.getUserInfo(id);}
+
 
 }

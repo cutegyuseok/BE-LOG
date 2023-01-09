@@ -4,7 +4,7 @@
 <mapper namespace="com.example.blog.mapper.xenium.ProductMapper">
 
 
-    <select id="selectProduct" resultType="com.example.xenium.product.dto.Product" parameterType="com.example.xenium.util.dto.SearchDto">
+    <select id="selectProduct" resultType="com.example.blog.xenium.product.dto.Product" parameterType="com.example.blog.xenium.util.dto.SearchDto">
         SELECT   *,
                  (
                      SELECT catename
@@ -23,7 +23,7 @@
         select count(*) from product where status ='판매가능'
     </select>
 
-    <select id="selectDistinctProduct" resultType="com.example.xenium.product.dto.Product" parameterType="com.example.xenium.util.dto.SearchDto">
+    <select id="selectDistinctProduct" resultType="com.example.blog.xenium.product.dto.Product" parameterType="com.example.blog.xenium.util.dto.SearchDto">
         SELECT *,
                (SELECT catename
                 FROM   category c
@@ -41,7 +41,7 @@
         limit #{pagination.limitStart},#{recordSize}
     </select>
 
-    <select id="selectDistinctCount" resultType="Integer" parameterType="com.example.xenium.util.dto.SearchDto">
+    <select id="selectDistinctCount" resultType="Integer" parameterType="com.example.blog.xenium.util.dto.SearchDto">
         SELECT Count(*)
         FROM   product
         WHERE  id IN (SELECT etcid
@@ -52,7 +52,7 @@
           AND status = '판매가능'
     </select>
     
-    <select id="getCategories" resultType="com.example.xenium.product.dto.Category">
+    <select id="getCategories" resultType="com.example.blog.xenium.product.dto.Category">
         SELECT *
         FROM   category
         WHERE  catetype = '제품'

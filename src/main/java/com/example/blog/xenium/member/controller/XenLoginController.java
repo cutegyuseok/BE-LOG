@@ -1,19 +1,22 @@
 package com.example.blog.xenium.member.controller;
 
-import com.example.xenium.member.dto.LoginDTO;
-import com.example.xenium.member.dto.SignUpDTO;
-import com.example.xenium.member.service.MemberService;
+import com.example.blog.xenium.member.dto.UpdateDTO;
+import com.example.blog.xenium.member.dto.XenLoginDTO;
+import com.example.blog.xenium.member.dto.SignUpDTO;
+import com.example.blog.xenium.member.service.MemberService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
 @Api(tags = {"사용자 로그인 서비스"},description = "사용자 로그인 관련 서비스")
 @RestController
-public class LoginController {
+@RequestMapping("/xenium/*")
+public class XenLoginController {
 
     @Autowired
     MemberService memberService;
@@ -23,7 +26,7 @@ public class LoginController {
 
     @ApiOperation(value = "사용자 로그인", notes = "사용자 로그인 시도")
     @PostMapping("/login")
-    public String login(LoginDTO dto) {
+    public String login(XenLoginDTO dto) {
         SignUpDTO info = memberService.login(dto);
         if (info != null) {
             session.setAttribute("id", info);
@@ -55,6 +58,13 @@ public class LoginController {
         if(session.getAttribute("id")!=null){
             return "Login";
         }else return "need";
+    }
+
+    @ApiOperation(value = "사용자 정보 수정", notes = "사용자 정보 수정 시도")
+    @PostMapping("/changeInfo")
+    public int changeInfo(UpdateDTO dto){
+        dto.setId(String.valueOf(session.getAttribute("id")));
+        return memberService.changeInfo(dto);
     }
 
 

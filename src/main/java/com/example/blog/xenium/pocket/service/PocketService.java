@@ -1,8 +1,8 @@
 package com.example.blog.xenium.pocket.service;
 
-import com.example.xenium.pocket.dto.Cart;
-import com.example.xenium.pocket.repository.PocketRepository;
-import com.example.xenium.product.repository.ProductRepository;
+import com.example.blog.xenium.pocket.dto.Cart;
+import com.example.blog.xenium.pocket.repository.PocketRepository;
+import com.example.blog.xenium.product.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

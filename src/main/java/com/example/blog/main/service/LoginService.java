@@ -19,10 +19,8 @@ public class LoginService {
     LoginRepository loginRepository;
 
     public String login(Object obj){
-        System.out.println(obj.toString());
        Map<String ,LinkedHashMap<String,HashMap<String,Object>>> param = (Map<String, LinkedHashMap<String,HashMap<String,Object>>>) obj;
        LinkedHashMap<String,HashMap<String, Object>> info = param.get("authObj");
-        System.out.println(info);
         String id = String.valueOf(info.get("id"));
         HashMap<String,Object> kakaoAccount = info.get("kakao_account");
         String nickName = ((HashMap<String, String>) kakaoAccount.get("profile")).get("nickname");

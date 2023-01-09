@@ -1,14 +1,7 @@
 package com.example.blog.xenium.member.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
-@NoArgsConstructor
-@AllArgsConstructor
-public class SignUpDTO {
-
+public class UpdateDTO {
     private String id;
-    private String pw;
     private String name;
     private String phone;
     private String address;
@@ -19,8 +12,17 @@ public class SignUpDTO {
     private String addressDetail;
     private String postcode;
 
-    public SignUpDTO(String id){
+    public UpdateDTO(String id, String name, String phone, String address, String email, String gender, String sns, String birth, String addressDetail, String postcode) {
         this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+        this.email = email;
+        this.gender = gender;
+        this.sns = sns;
+        this.birth = birth;
+        this.addressDetail = addressDetail;
+        this.postcode = postcode;
     }
 
     public String getId() {
@@ -29,14 +31,6 @@ public class SignUpDTO {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getPw() {
-        return pw;
-    }
-
-    public void setPw(String pw) {
-        this.pw = pw;
     }
 
     public String getName() {
@@ -109,22 +103,5 @@ public class SignUpDTO {
 
     public void setPostcode(String postcode) {
         this.postcode = postcode;
-    }
-
-    @Override
-    public String toString() {
-        return "SignUpDTO{" +
-                "id='" + id + '\'' +
-                ", pw='" + pw + '\'' +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", address='" + address + '\'' +
-                ", email='" + email + '\'' +
-                ", gender='" + gender + '\'' +
-                ", sns='" + sns + '\'' +
-                ", birth='" + birth + '\'' +
-                ", addressDetail='" + addressDetail + '\'' +
-                ", postcode='" + postcode + '\'' +
-                '}';
     }
 }

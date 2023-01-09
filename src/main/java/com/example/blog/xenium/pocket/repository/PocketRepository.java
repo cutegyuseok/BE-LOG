@@ -1,7 +1,7 @@
 package com.example.blog.xenium.pocket.repository;
 
-import com.example.xenium.mapper.PocketMapper;
-import com.example.xenium.pocket.dto.Cart;
+import com.example.blog.mapper.xenium.PocketMapper;
+import com.example.blog.xenium.pocket.dto.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

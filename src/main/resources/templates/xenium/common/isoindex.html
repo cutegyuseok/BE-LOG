@@ -6,10 +6,10 @@
 	<link rel="stylesheet" href="/xenium/css/style.css">
 	<script>
 		function productLocationChange(param){
-			location.href = "/productList?searchWord="+ encodeURI(param);
+			location.href = "/xenium/productList?searchWord="+ encodeURI(param);
 		}
 		function contentsLocationChange(param){
-			location.href = "/contentsList?searchWord="+ encodeURI(param);
+			location.href = "/xenium/contentsList?searchWord="+ encodeURI(param);
 		}
 </script>
 </head>
@@ -17,7 +17,7 @@
  <!-- iso section -->
 
                   <ul id="isoindex" class="filter-wrapper clearfix" style=" position: fixed; z-index: 99;">
-                           <li><a href="/aboutus" class="selected opc-main-bg" style="color:white;">ABOUT US</a></li>
+                           <li><a href="/xenium/aboutus" class="selected opc-main-bg" style="color:white;">ABOUT US</a></li>
                            <li><a  onclick="productLocationChange('')" class="opc-main-bg" style="color:white;">SHOP</a></li>
                            <!-- <li><a  onclick="productLocationChange('쿠키')" class="opc-main-bg">COOKIESHOP</a></li>
                            <li><a  onclick="productLocationChange('커피')" class="opc-main-bg">COFFEESHOP</a></li> -->
@@ -27,13 +27,12 @@
 
 
                       <th:block th:if="${session.id == null}">
-                                <li><a href="/loginPage" class="opc-main-bg" style="color:white;">LOGIN</a></li>
-                                <li><a href="/signupPage" class="opc-main-bg" style="color:white;">SIGNUP</a></li>
+                                <li><a href="/login" class="opc-main-bg" style="color:white;">LOGIN</a></li>
                             </th:block>
                       <th:block th:if="${session.id != null}">
-                        <li><a href="/cartList" class="opc-main-bg" style="color:white;">CART</a></li>
+                        <li><a href="/xenium/cartList" class="opc-main-bg" style="color:white;">CART</a></li>
 				         <li><a onclick="logout()" style="color:white;">LOGOUT</a></li>
-				         <li><a href="/changeInfo" style="color:white;">MYPAGE</a></li>
+				         <li><a href="/xenium/changeInfo" style="color:white;">MYPAGE</a></li>
                       </th:block>
 
                    </ul>
@@ -42,13 +41,13 @@
 
          $.ajax({
              type : "POST",
-             url : "/logout", //요청 할 URL
+             url : "/xenium/logout", //요청 할 URL
              success : function(data) {
                  //통신이 정상적으로 되었을때 실행 할 내용
 
                  if(data == 'success')    {
                      alert('로그아웃 성공하였습니다.');
-                     location.href="/";
+                     location.href="/xenium/index";
                  }else{
                      alert('이미 로그아웃 되어있습니다.');
                  }

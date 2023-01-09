@@ -22,20 +22,20 @@ http://www.tooplate.com/view/2082-pure-mix
 
 	<!-- Bootstrap CSS
    ================================================== -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="/xenium/css/bootstrap.min.css">
 
 	<!-- Animate CSS
    ================================================== -->
-	<link rel="stylesheet" href="css/animate.min.css">
+	<link rel="stylesheet" href="/xenium/css/animate.min.css">
 
 	<!-- Font Icons CSS
    ================================================== -->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/ionicons.min.css">
+	<link rel="stylesheet" href="/xenium/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/xenium/css/ionicons.min.css">
 
 	<!-- Main CSS
    ================================================== -->
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="/xenium/css/style.css">
 
 	<!-- Google web font 
    ================================================== -->	
@@ -54,8 +54,8 @@ http://www.tooplate.com/view/2082-pure-mix
 
 </div>
 
-<head th:replace="/common/navi.html"></head>
-<head th:replace="/common/navileft.html"></head>
+<head th:replace="/xenium/common/navi.html"></head>
+<head th:replace="/xenium/common/navileft.html"></head>
 
 
 <!-- Portfolio section
@@ -68,7 +68,7 @@ http://www.tooplate.com/view/2082-pure-mix
             
                <!-- iso section -->
                <div class="iso-section wow fadeInUp" data-wow-delay="2.6s">
-				   <head th:replace="/common/iso.html"></head>
+				   <head th:replace="/xenium/common/iso.html"></head>
                </div>
           <section id="contact">
    			<div class="container">
@@ -84,7 +84,7 @@ http://www.tooplate.com/view/2082-pure-mix
 							<div class="contact-submit" style="width:100%;margin-top:20px;">
 								<input type="button"  onclick="loginOn()" class="form-control submit" value="회원로그인">
 							</div>
-							<a href="/loginPage">LOGIN</a> / <a href="/signupPage">SIGNUP</a>
+							<a href="/xenium/loginPage">LOGIN</a> / <a href="/xenium/signupPage">SIGNUP</a>
 						</form>
 					</div>
 			</div>
@@ -97,7 +97,7 @@ http://www.tooplate.com/view/2082-pure-mix
 </section>
 
 
-<head th:replace="/common/footer.html"></head>
+<head th:replace="/xenium/common/footer.html"></head>
 <script>
 	function loginOn(){
 
@@ -116,7 +116,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
 		$.ajax({
 					type : "POST",
-					url : "/login", //요청 할 URL
+					url : "/xenium/login", //요청 할 URL
 					data : {
 						'id':id,
 						'pw':pw
@@ -141,12 +141,12 @@ http://www.tooplate.com/view/2082-pure-mix
 
 <!-- Javascript 
 ================================================== -->
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/isotope.js"></script>
-<script src="js/imagesloaded.min.js"></script>
-<script src="js/wow.min.js"></script>
-<script src="js/custom.js"></script>
+<script src="/xenium/js/jquery.js"></script>
+<script src="/xenium/js/bootstrap.min.js"></script>
+<script src="/xenium/js/isotope.js"></script>
+<script src="/xenium/js/imagesloaded.min.js"></script>
+<script src="/xenium/js/wow.min.js"></script>
+<script src="/xenium/js/custom.js"></script>
 
 </body>
 </html>
