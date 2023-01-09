@@ -22,7 +22,6 @@ public class MemberService {
     @Autowired
     MemberRepository memberRepository;
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public int signup(SignUpDTO dto) {
         try {
@@ -65,16 +64,15 @@ public class MemberService {
         return success;
     }
 
+
     public boolean autoSignup(String id){
         try {
-            System.out.println("auto Signup");
             if (memberRepository.autoSignup(id) > 0) {
                 return true;
             } else {
                return false;
             }
         }catch (Exception e){
-            logger.info(e.getMessage());
             return false;
         }
     }
