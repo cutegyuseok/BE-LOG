@@ -39,7 +39,6 @@ public class XeniumPageController {
         session.setAttribute("categories",ps.getCategories());
         if (session.getAttribute("id")!=null){
             String id = String.valueOf(session.getAttribute("id"));
-            System.out.println(id);
             if(!memberService.checkExist(id)){
                 memberService.autoSignup(id);
             }
