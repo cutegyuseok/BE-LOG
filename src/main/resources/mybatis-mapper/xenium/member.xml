@@ -95,4 +95,8 @@
         from customer
         where id = #{id}
     </select>
+
+    <select id="selectEach" parameterType="int" resultType="com.example.blog.xenium.member.dto.Each">
+        select (select productname from product where id = o.productid) "name",amount ,price  from orderdetail o where id = #{id};
+    </select>
 </mapper>
