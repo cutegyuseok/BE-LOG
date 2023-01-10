@@ -1,6 +1,7 @@
 package com.example.blog.xenium.page.controller;
 
 import com.example.blog.aop.NonLogin;
+import com.example.blog.xenium.member.dto.OrderList;
 import com.example.blog.xenium.member.dto.SignUpDTO;
 import com.example.blog.xenium.member.service.MemberService;
 import com.example.blog.xenium.pocket.service.PocketService;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @Api(tags = {"페이지 서비스"},description = "페이지 관련 서비스")
@@ -96,7 +98,9 @@ public class XeniumPageController {
     }
 
     @GetMapping("/orderList")
-    public String orderList(){
+    public String orderList(Model model,HttpSession session){
+        List<OrderList> list = memberService.selectOrderList(String.valueOf(session.getAttribute("id")));
+        model.addAttribute("list",list);
         return "xenium/user/orderList";
     }
 }

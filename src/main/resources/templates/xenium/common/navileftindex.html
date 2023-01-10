@@ -45,7 +45,7 @@ function contentsLocationChange(param){
 	location.href = "/xenium/contentsList?searchWord="+ encodeURI(param);
 }
 function locationChange(){
-	location.href = "/xenium/cartList";
+	location.href = "/xenium/orderList";
 }
 </script>
 <div id="left" class="XXsnipcss_extracted_selector_selectionXX" style="color:white;">
@@ -69,7 +69,7 @@ function locationChange(){
       <th:block th:if="${session.id != null}">
 		  <li>
         <a class="slideMenu" onclick="locationChange()">
-          장바구니
+          주문 목록
         </a>
       </li>
       </th:block>
@@ -88,8 +88,8 @@ function locationChange(){
         </ul>
       </li>
       <li>
-        <a class="slideMenu" onclick="#">
-          CONTACT
+        <a class="slideMenu" href="/">
+          Go BE-LOG
         </a>
       </li>
       <!-- <li>

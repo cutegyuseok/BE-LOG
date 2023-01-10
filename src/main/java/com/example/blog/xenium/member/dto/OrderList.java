@@ -9,10 +9,11 @@ import java.util.List;
 @Builder
 @Getter
 @Setter
+@ToString
 public class OrderList {
-    private String orderID;
+    private int id;
     private String status;
-    private String indate;
-    private List<Each> list;
-
+    private String inDate;
+    private int total;
+    private List<EachProduct> eachProducts;
 }
