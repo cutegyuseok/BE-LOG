@@ -1,14 +1,12 @@
 package com.example.blog.xenium.member.repository;
 
 import com.example.blog.mapper.xenium.MemberMapper;
-import com.example.blog.xenium.member.dto.UpdateDTO;
-import com.example.blog.xenium.member.dto.XenLoginDTO;
-import com.example.blog.xenium.member.dto.Order;
-import com.example.blog.xenium.member.dto.SignUpDTO;
+import com.example.blog.xenium.member.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Repository
 public class MemberRepository {
@@ -46,6 +44,13 @@ public class MemberRepository {
     }
 
     public SignUpDTO getUserInfo(String id){return memberMapper.getUserInfo(id);}
+
+    public List<OrderList> selectOrderList(String id){
+        return memberMapper.selectOrderList(id);
+    }
+    public List<EachProduct> selectEachProduct(String id){
+        return memberMapper.selectEachProduct(id);
+    }
 
 
 }

@@ -59,6 +59,49 @@ http://www.tooplate.com/view/2082-pure-mix
 }
 
   </style>
+  <style>
+	  .array{
+		  display:inline-block;
+	  }
+	  .grid {
+		  display: grid;
+		  grid-template-columns: 200px auto;
+		  grid-template-rows: 70px minmax(160px, auto) auto;
+		  grid-template-areas:
+    'header header'
+    'leftbar main'
+	  ;
+		  column-gap: 20px;
+		  row-gap: 20px;
+	  }
+
+	  .page-header {
+		  grid-area: header;
+	  }
+
+	  .page-leftbar {
+		  grid-area: leftbar;
+	  }
+
+	  .page-main {
+		  grid-area: main;
+	  }
+
+
+	  .content {
+		  color: #242424;
+		  background-color: #f9f9f9;
+		  font-weight: 600;
+		  text-align: center;
+		  box-sizing: border-box;
+		  height: 100%;
+		  padding: 10px;
+		  align-content: center;
+	  }
+	  .money{
+		  float: left;
+	  }
+  </style>
 </head>
 <body>
 
@@ -94,14 +137,44 @@ http://www.tooplate.com/view/2082-pure-mix
                
           <section id="contact" style="padding-top: 4rem;padding-left: 0px;">
    			<div class="container">
-               <div class="row">
-				<div class="wow fadeInUp col-md-5 col-sm-6" data-wow-delay="1.6s" style="padding-left: 0px;">
-					<th:block>
-
-
-					</th:block>
+				<div style="font-family: acumin-pro, sans-serif;font-weight: 700;font-style: italic;font-size:45px;text-align: left;padding-top: 60px;color:#83413e;">
+					HISTORY
 				</div>
-		</div></div></section>
+               <div class="row">
+				   <th:block th:each="list : ${list}">
+					   <div style="width: 100%">
+						   <header class="page-header" style="margin:0; padding-top: 15px; padding-bottom: 5px;">
+							   <div class="content" style="height:45px;font-size:26px;">
+								   <p style="font-size: 25px;" th:text="${list.inDate}"></p>
+							   </div>
+						   </header>
+						   <div style="width: 100%; display: inline-flex;">
+
+						   <!--<aside class="page-leftbar">-->
+							<div style="width: 40%">
+							   <div class="content" style="padding-left:0;font-size:16px;">
+								   <p th:text="${list.status}"></p>
+								   <p th:text="${list.total}+원"></p>
+							   </div>
+							</div>
+						   <!--</aside>-->
+
+						   <!--<main class="page-main">-->
+							   <div style="width: 60%; margin-left: 15px;">
+							   <div class="content" style="padding-left:0;font-size:16px;">
+								   <th:block th:each="each : ${list.eachProducts}">
+									   <p th:text="${each.name}+ ${each.amount}+'개  '+${each.price}+원"></p>
+								   </th:block>
+							   </div>
+							   </div>
+								   <!--</main>-->
+						   </div>
+
+					   </div>
+				   </th:block>
+			   </div>
+			</div>
+		  </section>
 
          </div>
 

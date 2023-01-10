@@ -72,7 +72,7 @@
             )
     </insert>
     
-    <select id="checkExist" parameterType="String">
+    <select id="checkExist" parameterType="String" resultType="int">
         select COUNT(id) from customer where id=#{id}
     </select>
     
@@ -96,7 +96,25 @@
         where id = #{id}
     </select>
 
-    <select id="selectEach" parameterType="int" resultType="com.example.blog.xenium.member.dto.Each">
-        select (select productname from product where id = o.productid) "name",amount ,price  from orderdetail o where id = #{id};
+    <select id="selectOrderList" parameterType="String" resultType="com.example.blog.xenium.member.dto.OrderList">
+        SELECT id,
+               status,
+               indate "inDate"
+        FROM   orderbook
+        WHERE  userid = #{id};
     </select>
+
+    <select id="selectEachProduct" parameterType="String" resultType="com.example.blog.xenium.member.dto.EachProduct">
+        SELECT DISTINCT o.id,
+                        o.orderid                 "orderID",
+                        (SELECT productname
+                         FROM   product
+                         WHERE  id = o.productid) "name",
+                        o.amount,
+                        o.price
+        FROM   orderdetail o,
+               orderbook o2
+        WHERE  o2.userid = #{id};
+    </select>
+
 </mapper>

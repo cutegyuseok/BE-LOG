@@ -27,13 +27,12 @@
 
                       <th:block th:if="${session.id == null}">
                         <li><a href="/login" class="opc-main-bg">LOGIN</a></li>
-                          <th:block>
+                          </th:block>
                               <th:block th:if="${session.id != null}">
-                        <li><a href="/xenium/cartList" class="opc-main-bg">CART</a></li>
+                        <li><a href="/xenium/orderList" class="opc-main-bg">HISTORY</a></li>
 				         <li><a onclick="logout()">LOGOUT</a></li>
 				         <li><a href="/xenium/changeInfo">MYPAGE</a></li>
-				         <li><a href="/xenium/orderList">MYORDER</a></li>
-                                  <th:block>
+                                  </th:block>
 
                    </ul>
  <script>

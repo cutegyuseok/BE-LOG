@@ -30,7 +30,7 @@ public class LogAdvice {
 
         return proceedingJoinPoint.proceed();
     }
-    @Around("execution(* com.example.blog.xenium.*.controller.*Controller.*(..))"
+    @Around("execution(* com.example.blog.xenium..controller.*Controller.*(..))"
             +" || execution(* com.example.blog.xenium.*.service.*Service*.*(..))"
             +" || execution(* com.example.blog.xenium.*.repository.*Repository.*(..))")
     public Object logXeniumPrint(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {

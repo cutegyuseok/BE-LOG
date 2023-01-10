@@ -1,9 +1,6 @@
 package com.example.blog.xenium.member.service;
 
-import com.example.blog.xenium.member.dto.UpdateDTO;
-import com.example.blog.xenium.member.dto.XenLoginDTO;
-import com.example.blog.xenium.member.dto.Order;
-import com.example.blog.xenium.member.dto.SignUpDTO;
+import com.example.blog.xenium.member.dto.*;
 import com.example.blog.xenium.member.repository.MemberRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class MemberService {
@@ -79,7 +73,6 @@ public class MemberService {
 
     public boolean checkExist(String id){
         try {
-            System.out.println(memberRepository.checkExist("check id"+id));
             if(memberRepository.checkExist(id)>0){
                 return true;
             }else return false;
@@ -106,5 +99,28 @@ public class MemberService {
             return new SignUpDTO(id);
         }
     }
+
+    public List<OrderList> selectOrderList(String id){
+        try {
+            List<OrderList> list = memberRepository.selectOrderList(id);
+            List<EachProduct> productList = memberRepository.selectEachProduct(id);
+            for (OrderList order : list){
+                List<EachProduct> targetList = new ArrayList<>();
+                int total = 0;
+                for (EachProduct product: productList){
+                    if (order.getId()==product.getOrderID()){
+                        targetList.add(product);
+                        total+=product.getAmount()*product.getPrice();
+                    }
+                }
+                order.setTotal(total);
+                order.setEachProducts(targetList);
+            }
+            return list;
+        }catch (Exception e){
+            return null;
+        }
+    }
+
 
 }
